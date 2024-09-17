@@ -35,7 +35,7 @@ export const Login = async (email: string, password: string): Promise<{ user: Om
         email: user.email,
         role: user.role,
       },
-      process.env.JWT_SECRET as string,
+      process.env.PRIVATE_KEY as string,
       process.env.JWT_EXPIRES as string
     );
 
