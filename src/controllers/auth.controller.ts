@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import * as UserService from "../services/user.service";
+import * as UserService from "../services/auth.service";
 
-export const Store = async (req: Request, res: Response): Promise<void> => {
+export const Register = async (req: Request, res: Response): Promise<void> => {
   try {
-    const user_created = await UserService.Store(req.body);
+    const user_created = await UserService.Register(req.body);
     res.status(201).json(user_created);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
