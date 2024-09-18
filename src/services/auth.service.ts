@@ -2,7 +2,7 @@ import User, { UserInterface } from "../models/user.model";
 import { generateToken } from "microservices-nodejs";
 import { compare, hash } from "../utils/bcrypt";
 
-export const Store = async (user_input: UserInterface): Promise<UserInterface> => {
+export const Register = async (user_input: UserInterface): Promise<UserInterface> => {
   try {
     const hash_pw = await hash(user_input.password);
 
