@@ -1,27 +1,7 @@
 import express, { Express } from "express";
-const app: Express = express();
-
-import dotenv from "dotenv";
-import helmet from "helmet";
-import cors from "cors";
 import mongoose from "mongoose";
-import morgan from "morgan";
-import AuthRouter from "./routes/auth.route";
-import UserRouter from "./routes/user.route";
+import app from "./utils/index";
 
-dotenv.config();
-app.use(morgan("common"));
-
-app.use(
-  cors({
-    origin: ["*"],
-    credentials: true,
-  })
-);
-app.use(helmet());
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 app.get("/", async (req: express.Request, res: express.Response) => {
   try {
@@ -37,9 +17,7 @@ if (!process.env.MONGODB_URL) {
 
 mongoose
   .connect(process.env.MONGODB_URL)
-  .then(() => {
-    console.log("MongoDB connected to the backend successfully");
-  })
+  .then(() => {})
   .catch((err) => {
     console.log("Could connect to database");
     console.log(err);
@@ -53,9 +31,6 @@ app.get("/", async (req: express.Request, res: express.Response) => {
     console.log(error);
   }
 });
-
-app.use("/api/common/v1/auth", AuthRouter);
-app.use("/api/common/v1/user", UserRouter)
 
 const PORT = process.env.APP_PORT;
 
