@@ -6,6 +6,9 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+# Install pnpm globlal
+RUN npm install -g pnpm
+
 # Install app dependencies
 RUN pnpm install
 
