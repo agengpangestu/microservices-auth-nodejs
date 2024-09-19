@@ -7,6 +7,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import AuthRouter from "./routes/auth.route";
+import UserRouter from "./routes/user.route";
 
 dotenv.config();
 app.use(morgan("common"));
@@ -54,6 +55,7 @@ app.get("/", async (req: express.Request, res: express.Response) => {
 });
 
 app.use("/api/common/v1/auth", AuthRouter);
+app.use("/api/common/v1/user", UserRouter)
 
 const PORT = process.env.APP_PORT;
 
